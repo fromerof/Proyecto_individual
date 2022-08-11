@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Edit Recipe</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="d-flex justify-content-between align-items-center col-12">
+            <h1 class="text-center">Editar comentario</h1>
+            <div>
+                <a href="/indexloggedin" class="btn btn-primary">Inicio</a>
+                <a href="/logout" class="btn btn-info">Logout</a>
+            </div>
+
+        </nav>
+        <form action="/update/comment/" method="post">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="alert alert-danger" role="alert">
+                            {% for message in messages %}
+                            <p>{{message}}</p>
+                            {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            
+            <div>
+                <input type="hidden" name="id" value={{edit.id}}>
+                <div>
+                    <div class="form-group">
+                        <label for="description">Comentario: </label>
+                        <textarea name="comment"  cols="30" rows="10" class="form-control" placeholder="{{comment.comment}}"></textarea>
+                    </div>
+                    <input type="submit" value="Actualizar" class="btn btn-primary">
+            </div>
+        </form>
+    </body>
+</html>

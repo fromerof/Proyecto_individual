@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>W3.CSS Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- <link rel= "stylesheet" type= "text/css" href= "{{url_for('static',filename='style.css')}}"> -->
+    </head>
+    <body>
+    <!-- Header -->
+    <header class="w3-display-container w3-content w3-center" style="max-width:2000px">
+        <img class="w3-image" src="{{url_for('static',filename = 'IMG_0528.jpg')}}" alt="Me" width="2000" height="400">
+    <div class="w3-display-middle w3-padding-large w3-border w3-wide w3-text-light-grey w3-center">
+        <h1 class="w3-hide-medium w3-hide-small w3-xxxlarge">Felipe Romero</h1>
+        <h5 class="w3-hide-large" style="white-space:nowrap">JANE DOE</h5>
+        <h3 class="w3-hide-medium w3-hide-small">Portafolio</h3>
+    </div>
+    <div>
+        <label for="comment">Comentarios</label>
+        <input type="text">
+    </div>
+    <!-- Navbar (placed at the bottom of the header image) -->
+    <div class="w3-bar w3-light-grey w3-round w3-display-bottommiddle w3-hide-small" style="bottom:-16px">
+        <a href="#" class="w3-bar-item w3-button">Inicio</a>
+        <a href="#portfolio" class="w3-bar-item w3-button">Portafolio</a>
+        <a href="#contact" class="w3-bar-item w3-button">Contacto</a>
+        <a href="/add_user" class="w3-bar-item w3-button">Registrarse</a>
+        <a href="/iniciar_sesion" class="w3-bar-item w3-button">Iniciar Sesión</a>
+    </div>
+    </header>
+
+    <!-- Navbar on small screens -->
+    <div class="w3-center w3-light-grey w3-padding-16 w3-hide-large w3-hide-medium">
+        <div class="w3-bar w3-light-grey">
+            <a href="#" class="w3-bar-item w3-button">Inicio</a>
+            <a href="#portfolio" class="w3-bar-item w3-button">Portafolio</a>
+            <a href="#contact" class="w3-bar-item w3-button">Contacto</a>
+            <a href="/register" class="w3-bar-item w3-button">Registrarse</a>
+        </div>
+    </div>
+    <!-- Page content -->
+    <div class="w3-content w3-padding-large w3-margin-top" id="portfolio">
+
+    <!-- Images (Portfolio) -->
+    <img src="{{url_for('static',filename = 'IMG_0527.jpg')}}" alt="pic1" class="w3-image w3-margin-top" width="550" height="400" style="margin-left:190px;">
+    <img src="{{url_for('static',filename = 'IMG_0528.jpg')}}" alt="pic2" class="w3-image w3-margin-top" width="1000" height="500">
+    <img src="{{url_for('static',filename = 'IMG_0523.jpg')}}" alt="pic3" class="w3-image w3-margin-top" width="1000" height="500">
+    <img src="{{url_for('static',filename = 'IMG_0280.jpg')}}" alt="pic4" class="w3-image w3-margin-top" width="1000" height="500">
+    <img src="{{url_for('static',filename = 'IMG_0753.jpg')}}" alt="pic5s" class="w3-image w3-margin-top" width="550" height="500" style="margin-left:190px;">
+
+        <h3>Comentarios</h3>
+        <h6>Registrate o inicia sesión para agregar comentarios!</h6>
+    {%for comment in comments%}
+        <p>{{comment.comment}}</p>
+        <p>{{comment.created_at}}</p>
+    {%endfor%}
+
+
+
+
+    <!-- Contact -->
+        <div class="w3-light-grey w3-padding-large w3-padding-32 w3-margin-top" id="contact">
+            <h3 class="w3-center">Contacto</h3>
+            <hr>
+            <p>Cualquier consulta acerca de mis fotos o si necesitas ayuda con algo relacionado a la fotografia. No dudes en contactarme! Porfavor registrate si no tienes cuenta o inicia sesión para poder enviarme un mensaje.</p>
+
+        </div>
+
+        <!-- End page content -->
+    </div>
+
+    </body>
+</html>

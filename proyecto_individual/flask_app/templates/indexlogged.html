@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>W3.CSS Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    </head>
+    <body>
+
+    <!-- Header -->
+    <header class="w3-display-container w3-content w3-center" style="max-width:2000px">
+        <image class="w3-image" src="{{url_for('static',filename = 'IMG_0528.jpg')}}" alt="Me" width="2000" height="400">
+    <div class="w3-display-middle w3-padding-large w3-border w3-wide w3-text-light-grey w3-center">
+        <h1 class="w3-hide-medium w3-hide-small w3-xxxlarge">Felipe Romero</h1>
+        <h5 class="w3-hide-large" style="white-space:nowrap">JANE DOE</h5>
+        <h3 class="w3-hide-medium w3-hide-small">Portafolio</h3>
+    </div>
+    <!-- Navbar (placed at the bottom of the header image) -->
+    <div class="w3-bar w3-light-grey w3-round w3-display-bottommiddle w3-hide-small" style="bottom:-16px">
+        <a href="#" class="w3-bar-item w3-button">Inicio</a>
+        <a href="#portfolio" class="w3-bar-item w3-button">Portafolio</a>
+        <a href="#contact" class="w3-bar-item w3-button">Contacto</a>
+        <a href="/logout" class="w3-bar-item w3-button">Cerrar sesión</a>
+    </div>
+    </header>
+
+    <!-- Navbar on small screens -->
+    <div class="w3-center w3-light-grey w3-padding-16 w3-hide-large w3-hide-medium">
+        <div class="w3-bar w3-light-grey">
+            <a href="#" class="w3-bar-item w3-button">Inicio</a>
+            <a href="#portfolio" class="w3-bar-item w3-button">Portafolio</a>
+            <a href="#contact" class="w3-bar-item w3-button">Contacto</a>
+            <a href="/logout" class="w3-bar-item w3-button">Cerrar sesión</a>
+        </div>
+    </div>
+    <!-- Page content -->
+    <div class="w3-content w3-padding-large w3-margin-top" id="portfolio">
+
+    <!-- Images (Portfolio) -->
+    <image class="w3-image"  src="{{url_for('static',filename = 'IMG_0527.jpg')}}" alt="pic1" class="w3-image" width="550" height="400" style="margin-left:190px;">
+    <img src="{{url_for('static',filename = 'IMG_0528.jpg')}}" alt="pic2" class="w3-image w3-margin-top" width="1000" height="500">
+    <img src="{{url_for('static',filename = 'IMG_0523.jpg')}}" alt="pic3" class="w3-image w3-margin-top" width="1000" height="500">
+    <img src="{{url_for('static',filename = 'IMG_0280.jpg')}}" alt="pic4" class="w3-image w3-margin-top" width="1000" height="500">
+    <img src="{{url_for('static',filename = 'IMG_0753.jpg')}}" alt="pic5s" class="w3-image w3-margin-top" width="550" height="500" style="margin-left:190px;">
+
+    <br>
+    <div>
+        <h3>Comentarios</h3>
+        <form action="/comment" method="post">
+            <input type="text" name="comment" placeholder="Agrega un comentario">
+            <input type="submit" value="Post">
+        </form>
+    </div>
+    {%for comment in comments%}
+        <!-- {% if comment.id == session.user_id %}
+        <p>{{user.first_name}}: </p>
+        {% elif comment.id != session.user_id %}
+        {%endif%} -->
+        <p>{{comment.comment}}</p>
+        <p>{{comment.created_at}} 
+            {% if comment.user_id == session.user_id %}
+            <a href="/edit/comment/{{comment.id}}">Editar</a> | <a href="/delete/comment/{{comment.id}}">Borrar</a>
+            {%endif%}
+        </p>
+    {%endfor%}
+
+
+
+
+
+
+    <!-- Contact -->
+        <div class="w3-light-grey w3-padding-large w3-padding-32 w3-margin-top" id="contact">
+            <h3 class="w3-center">Contacto</h3>
+            <hr>
+            <p>Cualquier consulta acerca de mis fotos o si necesitas ayuda con algo relacionado a la fotografia. No dudes en contactarme!</p>
+
+            <form action="/messages" method="post" target="_blank">
+                <div class="w3-section">
+                    <label>Nombre</label>
+                    <input class="w3-input w3-border" type="text" name="name" required name="Name">
+                </div>
+                <div class="w3-section">
+                    <label>Email</label>
+                    <input class="w3-input w3-border" type="text" name="email" required name="Email">
+                </div>
+                <div class="w3-section">
+                    <label>Mensaje</label>
+                    <input class="w3-input w3-border" name="message" required name="Message">
+                </div>
+                <button type="submit" class="w3-button w3-block w3-dark-grey">Enviar</button>
+            </form><br>
+            <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+
+        </div>
+
+        <!-- End page content -->
+    </div>
+
+    </body>
+</html>
